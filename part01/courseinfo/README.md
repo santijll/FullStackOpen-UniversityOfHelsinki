@@ -4,7 +4,7 @@ These exercises have been created using Vite and React. To see the app or site, 
 
 For example:
 
-cd part01
-cd courseinfo
-npm install
+cd part01  
+cd courseinfo  
+npm install  
 npm run dev
