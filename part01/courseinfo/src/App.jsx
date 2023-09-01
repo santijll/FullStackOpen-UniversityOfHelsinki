@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 const App = () => {
   const course = {
     name: "Half Stack application development",
@@ -61,7 +63,7 @@ const Total = (props) => {
       return accumulator + currentPart;
     }, 0);
 
-  return <p>Number of exercises: {total}</p>;
+  return <p style={{ fontStyle: "italic" }}>Number of exercises: {total}</p>;
 };
 
 export default App;
