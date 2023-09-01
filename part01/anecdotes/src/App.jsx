@@ -14,7 +14,6 @@ const App = () => {
   ];
   const [selected, setSelected] = useState(0);
   const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
-  const [mostVoted, setMostVoted] = useState(0);
 
   const handleNextAnecdote = () => {
     const randomNumber = Math.floor(Math.random() * anecdotes.length);
@@ -25,18 +24,7 @@ const App = () => {
     const copyVotes = [...votes];
     copyVotes[selected] += 1;
     setVotes(copyVotes);
-
-    // finding most voted anecdote
-    const highestNumber = Math.max(...votes);
-    const index = votes.indexOf(highestNumber);
-    setMostVoted(index);
   };
-
-  // const findMostVoted = () => {
-  //   const highestNumber = Math.max(...votes);
-  //   const index = votes.indexOf(highestNumber);
-  //   return index;
-  // };
 
   return (
     <div>
@@ -46,8 +34,7 @@ const App = () => {
       <Button handleClick={handleVote} text={"vote"} />
       <Button handleClick={handleNextAnecdote} text={"next anecdote"} />
       <Heading text={"Anecdote with most votes"} />
-      <Anecdote anecdotes={anecdotes} selection={mostVoted} />
-      <Votes votes={votes} selection={mostVoted} />
+      <MostVoted anecdotes={anecdotes} votes={votes} />
     </div>
   );
 };
@@ -80,5 +67,17 @@ const Button = ({ text, handleClick }) => (
     {text}
   </button>
 );
+
+const MostVoted = ({ votes, anecdotes }) => {
+  const highestNumber = Math.max(...votes);
+  const index = votes.indexOf(highestNumber);
+
+  return (
+    <>
+      <p style={{ fontStyle: "italic" }}> &quot;{anecdotes[index]} &quot;</p>
+      <p>has {votes[index]} votes</p>
+    </>
+  );
+};
 
 export default App;
